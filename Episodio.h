@@ -16,7 +16,7 @@ public:
     virtual ~Episodio();
     
     std::string getNombre() const;
-    unsigned int geteDuracion() const;
+    unsigned int getDuracion() const;
     
 private:
     std::string nombre;

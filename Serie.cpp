@@ -10,6 +10,6 @@ Serie::~Serie(){
     
 }
 
-Serie::getTemporadas() const{
+std::map<std::string,std::vector<Episodio> > Serie::getTemporadas() const{
     return temporadas;
 }

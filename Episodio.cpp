@@ -1,4 +1,4 @@
-#include "Episodio.h"
+#include "./Episodio.h"
 
 Episodio::Episodio(std::string nom, unsigned int dur):
 nombre(nom),duracion(dur) {
@@ -7,10 +7,10 @@ nombre(nom),duracion(dur) {
 Episodio::~Episodio(){
 }
 
-Episodio::getNombre() const{
+std::string Episodio::getNombre() const{
     return nombre;
 }
 
-Episodio::geteDuracion() const{
+unsigned int Episodio::getDuracion() const{
     return duracion;
 }

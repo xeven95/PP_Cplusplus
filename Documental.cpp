@@ -9,6 +9,6 @@ Documental::~Documental(){
     
 }
 
-Documental::getEpisodios() const{
+std::vector<Episodio> Documental::getEpisodios() const{
     return episodios;
 }

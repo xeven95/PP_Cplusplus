@@ -38,6 +38,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Contenido.o \
 	${OBJECTDIR}/Documental.o \
 	${OBJECTDIR}/Episodio.o \
+	${OBJECTDIR}/Gestor.o \
 	${OBJECTDIR}/Pelicula.o \
 	${OBJECTDIR}/Serie.o \
 	${OBJECTDIR}/main.o
@@ -47,8 +48,8 @@ OBJECTFILES= \
 CFLAGS=
 
 # CC Compiler Flags
-CCFLAGS=
-CXXFLAGS=
+CCFLAGS=-std=c++11
+CXXFLAGS=-std=c++11
 
 # Fortran Compiler Flags
 FFLAGS=
@@ -81,6 +82,11 @@ ${OBJECTDIR}/Episodio.o: Episodio.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Episodio.o Episodio.cpp
+
+${OBJECTDIR}/Gestor.o: Gestor.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Gestor.o Gestor.cpp
 
 ${OBJECTDIR}/Pelicula.o: Pelicula.cpp 
 	${MKDIR} -p ${OBJECTDIR}
