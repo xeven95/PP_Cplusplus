@@ -10,12 +10,46 @@
 #include <vector>
 #include <string>
 #include <algorithm>
+#include "Gestor.h"
+#include "Pelicula.h"
 
 /*
  * 
  */
 int main(int argc, char** argv) {
     char opc;
+    std::vector<std::string> auxgen;
+    
+    Gestor gestor;
+    Pelicula peli("asd","asd",auxgen,6);
+    
+    gestor.addContenido("pelicula",peli);
+    gestor.addContenido("pelicula",peli);
+    std::cout << "----" << '\n';
+    gestor.removeContenido("asd");
+    gestor.addContenido("pelicula",peli);
+
+
+    /*
+    
+    std::vector<int> myvector;
+
+  myvector.push_back(10);
+  myvector.push_back(25);
+  myvector.push_back(40);
+  myvector.push_back(55);
+  int aux= 5;
+  std::vector<int>::iterator it = std::find_if (myvector.begin(), myvector.end(), [aux](int n){
+      return aux == n;
+  });
+  if (it == myvector.end()){
+      it--;
+  }
+  std::cout << "The first odd value is " << *it << '\n';
+  std::cout << "El tamaño es " << gestor.size() << '\n';
+  
+  */
+  return 0;
     
     do{
         std::cout << "Elija una opcion" <<'\n';

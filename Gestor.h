@@ -18,10 +18,17 @@ public:
     Gestor();
     virtual ~Gestor();
     
-    void addContenido(Contenido& cont);
+    void addContenido(std::string tipo,Contenido& cont);
+    void removeContenido(std::string nombre);
+    bool exist_contenido(std::string nombre);
+    
+    //Metodos secundarios para opciones extra
+    void mostrar_contenido(std::string nombre);
+    int size();
+    
     
 private:
-    std::map<std::string, std::vector<Contenido> >;
+    std::map<std::string, std::vector<Contenido> > contenido;
     
 };
 
