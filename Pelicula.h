@@ -13,10 +13,13 @@
 
 class Pelicula: public Contenido {
 public:
+    Pelicula();
     Pelicula(std::string tit,std::string sin, std::vector<std::string> gen, unsigned int dur);
     virtual ~Pelicula();
     
     unsigned int getDuracion() const;
+    virtual std::string getTipo();
+    virtual void getInfo();
     
 private:
     unsigned int duracion;

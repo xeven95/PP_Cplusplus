@@ -10,15 +10,19 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
 
 class Contenido{
 public:
+    Contenido();
     Contenido(std::string tit,std::string sin, std::vector<std::string> gen);
     virtual ~Contenido();
     
     std::string getTitulo() const;
     std::string getSinopsis() const;
     std::vector<std::string> getGenero() const;
+    virtual std::string getTipo() ;
+    virtual void getInfo();
     
 private:
     std::string titulo, sinopsis;

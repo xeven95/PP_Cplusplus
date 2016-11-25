@@ -41,6 +41,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Gestor.o \
 	${OBJECTDIR}/Pelicula.o \
 	${OBJECTDIR}/Serie.o \
+	${OBJECTDIR}/Temporada.o \
 	${OBJECTDIR}/main.o
 
 
@@ -97,6 +98,11 @@ ${OBJECTDIR}/Serie.o: Serie.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Serie.o Serie.cpp
+
+${OBJECTDIR}/Temporada.o: Temporada.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Temporada.o Temporada.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}

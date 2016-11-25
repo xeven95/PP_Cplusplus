@@ -11,16 +11,19 @@
 #include "Contenido.h"
 #include "Episodio.h"
 #include <vector>
+#include <map>
 
 class Documental: public Contenido{
 public:    
-    Documental(std::string tit,std::string sin, std::vector<std::string> gen, std::vector<Episodio> episodios);
+    Documental(std::string tit,std::string sin, std::vector<std::string> gen);
     virtual ~Documental();
 
-    std::vector<Episodio> getEpisodios() const;
+    std::map<std::string,std::vector<Episodio> > getEpisodios() const;
+    virtual std::string getTipo();
+    virtual void getInfo();
     
 private:
-    std::vector<Episodio> episodios;
+    std::map<std::string,std::vector<Episodio> > episodios;
     
 };
 

@@ -23,11 +23,12 @@ int main(int argc, char** argv) {
     Gestor gestor;
     Pelicula peli("asd","asd",auxgen,6);
     
-    gestor.addContenido("pelicula",peli);
-    gestor.addContenido("pelicula",peli);
+    gestor.addContenido(peli);
+    gestor.addContenido(peli);
     std::cout << "----" << '\n';
     gestor.removeContenido("asd");
-    gestor.addContenido("pelicula",peli);
+    gestor.addContenido(peli);
+    gestor.mostrar_contenido();
 
 
     /*

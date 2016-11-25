@@ -1,6 +1,8 @@
 #include "Gestor.h"
 #include <iostream>
 #include <algorithm>
+#include "Pelicula.h"
+
 Gestor::Gestor(){
 
 }
@@ -10,10 +12,10 @@ Gestor::~Gestor(){
 }
 
 
-void Gestor::addContenido(std::string tipo, Contenido& cont){
+void Gestor::addContenido(Contenido& cont){
     //Añadir los tres tipos de contenido principal
     if (!this->exist_contenido(cont.getTitulo())){
-        contenido[tipo].push_back(cont);
+        contenido[cont.getTipo()].push_back(cont);
     } else {
          std::cout << "El contenido llamado " << cont.getTitulo() << " ya existe." << '\n';
     }
@@ -34,7 +36,7 @@ void Gestor::removeContenido(std::string nombre){
         });
         if(it2 != contenido[it->first].end()){
             borrado=true;
-            std::cout << "El contenido llamado " << it2->getTitulo() << " ha sido borrado." << '\n';
+            std::cout << "El contenido llamado " << it2->getTipo() << " ha sido borrado." << '\n';
             contenido[it->first].erase(it2);
         }
         //std::cout << "Campo valor map: " << it->first << '\n';
@@ -48,9 +50,35 @@ void Gestor::removeContenido(std::string nombre){
 
 //METODOS SECUNDARIOS
 
-void Gestor::mostrar_contenido(std::string nombre){
+void Gestor::mostrar_contenido(){
     std::map<std::string, std::vector<Contenido> >::iterator it;
+    std::vector<Contenido >::iterator it2;
+    for(it=contenido.begin(); it!=contenido.end();it++){
+        std::cout << it->first << ": ";
+        for(it2=contenido[it->first].begin(); it2!=contenido[it->first].end();it2++){
+           
+            it2->getInfo();
+        }
+        std::cout << '\n';
+    }
     //FALTA POR TERMINAR
+}
+
+Contenido Gestor::encontrar_contenido(std::string nombre){
+    std::map<std::string, std::vector<Contenido> >::iterator it;
+    bool encontrado=false;
+    Contenido cont;
+    for(it=contenido.begin(); it!=contenido.end() && !encontrado; it++){
+        std::vector<Contenido>::iterator it2 = std::find_if (contenido[it->first].begin(), contenido[it->first].end(), [nombre](Contenido n){
+            return n.getTitulo() == nombre;
+        });
+        if(it2 != contenido[it->first].end()){
+            encontrado=true;
+        }
+        cont = *it2;
+        //std::cout << "Campo valor map: " << it->first << '\n';
+    }
+    return cont;   
 }
 
 bool Gestor::exist_contenido(std::string nombre){

@@ -10,6 +10,7 @@
       <itemPath>Gestor.h</itemPath>
       <itemPath>Pelicula.h</itemPath>
       <itemPath>Serie.h</itemPath>
+      <itemPath>Temporada.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -24,6 +25,7 @@
       <itemPath>Gestor.cpp</itemPath>
       <itemPath>Pelicula.cpp</itemPath>
       <itemPath>Serie.cpp</itemPath>
+      <itemPath>Temporada.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -75,6 +77,10 @@
       </item>
       <item path="Serie.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Temporada.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Temporada.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
@@ -121,6 +127,10 @@
       <item path="Serie.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Serie.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Temporada.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Temporada.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
