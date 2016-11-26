@@ -12,6 +12,10 @@
 #include <algorithm>
 #include "Gestor.h"
 #include "Pelicula.h"
+#include "Documental.h"
+#include "Serie.h"
+#include "Episodio.h"
+#include "Temporada.h"
 
 /*
  * 
@@ -19,39 +23,58 @@
 int main(int argc, char** argv) {
     char opc;
     std::vector<std::string> auxgen;
+    auxgen.push_back("accion");
+    std::vector<std::string> auxgen2;
+    auxgen2.push_back("comedia");
+    auxgen2.push_back("drama");
+    std::vector<std::string> auxgen4;
+    auxgen4.push_back("accion");
+    auxgen4.push_back("comedia");
+    auxgen4.push_back("aventura");
+    std::vector<std::string> auxgen5;
+    auxgen5.push_back("miedo");
     
+   
     Gestor gestor;
-    Pelicula peli("asd","asd",auxgen,6);
+
+    Pelicula p("Pelicula1","sinopsis",auxgen,60);
+    Pelicula p2("Pelicula2","sinopsis",auxgen5,55);
+    Pelicula p3("Pelicula3","sinopsis",auxgen4,119);
+    Serie s("Serie1","sinopsis de serie",auxgen2);
+    Serie s2("Serie2","sinopsis de serie",auxgen);
+    Documental d("Documental1","sinopsis de documental",auxgen4);
+    Documental d2("Documental2","sinopsis de documental",auxgen);
+    Documental d3("Documental3","sinopsis de documental",auxgen5);
     
-    gestor.addContenido(peli);
-    gestor.addContenido(peli);
-    std::cout << "----" << '\n';
-    gestor.removeContenido("asd");
-    gestor.addContenido(peli);
+
+    Contenido * puntero = &p;
+    gestor.addContenido(puntero);
+    puntero = &s;
+    gestor.addContenido(puntero);
+    puntero = &d;
+    gestor.addContenido(puntero);
+    puntero = &p2;
+    gestor.addContenido(puntero);
+    puntero = &p3;
+    gestor.addContenido(puntero);
+    puntero = &s2;
+    gestor.addContenido(puntero);
+    puntero = &d2;
+    gestor.addContenido(puntero);
+    puntero = &d3;
+    gestor.addContenido(puntero);
+
+
+    gestor.removeContenido("Serie1");
+    std::cout << "--CONTENIDO--" << '\n';
     gestor.mostrar_contenido();
-
-
+    std::cout << "----" << '\n';
+    std::cout << "--GENEROS--" << '\n';    
+    gestor.mostrarInfoGenero();
+    std::cout << "----" << '\n';
+    
+    return 0;
     /*
-    
-    std::vector<int> myvector;
-
-  myvector.push_back(10);
-  myvector.push_back(25);
-  myvector.push_back(40);
-  myvector.push_back(55);
-  int aux= 5;
-  std::vector<int>::iterator it = std::find_if (myvector.begin(), myvector.end(), [aux](int n){
-      return aux == n;
-  });
-  if (it == myvector.end()){
-      it--;
-  }
-  std::cout << "The first odd value is " << *it << '\n';
-  std::cout << "El tamaño es " << gestor.size() << '\n';
-  
-  */
-  return 0;
-    
     do{
         std::cout << "Elija una opcion" <<'\n';
         std::cout << "1) Mostrar Peliculas, Series y Documentales." <<'\n';
@@ -80,5 +103,5 @@ int main(int argc, char** argv) {
                 std::cout << "Elija una opcion valida." << '\n';
         }
     }while (opc!='f');    
-    
+    */
 }
