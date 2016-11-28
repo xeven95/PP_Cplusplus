@@ -13,21 +13,22 @@
 #include <vector>
 #include <map>
 #include <string>
+#include <memory>
 
 class Gestor{
 public:
     Gestor();
     virtual ~Gestor();
     
-    void addContenido(Contenido* cont); //Add contenido principal
+    void addContenido(std::shared_ptr<Contenido> cont); //Add contenido principal
     void addContenido(std::string nserie, std::string ntemp);
     void addContenido(std::string nserie, std::string ntemp, Episodio& episodio);
     void addContenido(std::string nserie, Episodio& episodio);
     
     void removeContenido(std::string nombre);
     bool exist_contenido(std::string nombre);
-    Contenido* encontrar_contenido(std::string nombre);
-    std::vector<Contenido*>::iterator encontrar_contenido(std::vector<Contenido*> vector, Contenido* cont); //AÑADIR & A CONTENIDO PARA NO TRATAR COPIAS
+    std::shared_ptr<Contenido> encontrar_contenido(std::string nombre);
+    std::vector<std::shared_ptr<Contenido>>::iterator encontrar_contenido(std::vector<std::shared_ptr<Contenido>> vector, std::shared_ptr<Contenido> cont); //AÑADIR & A CONTENIDO PARA NO TRATAR COPIAS
 
     
     
@@ -38,11 +39,11 @@ public:
     
     
 private:
-    void addGenero(std::vector<std::string> genero, Contenido* cont);
-    void removeGenero(std::vector<std::string> genero, Contenido* cont);
+    void addGenero(std::vector<std::string> genero, std::shared_ptr<Contenido> cont);
+    void removeGenero(std::vector<std::string> genero, std::shared_ptr<Contenido> cont);
     
-    std::map<std::string, std::vector<Contenido*> > contenido;
-    std::map<std::string, std::vector<Contenido*> > generos;
+    std::map<std::string, std::vector<std::shared_ptr<Contenido>> > contenido;
+    std::map<std::string, std::vector<std::shared_ptr<Contenido>> > generos;
     
 };
 

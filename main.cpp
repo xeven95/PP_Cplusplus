@@ -34,38 +34,33 @@ int main(int argc, char** argv) {
     std::vector<std::string> auxgen5;
     auxgen5.push_back("miedo");
     
-   
+     //std::make_shared
+     //std::unique_ptr
     Gestor gestor;
-
-    Pelicula p("Pelicula1","sinopsis",auxgen,60);
-    Pelicula p2("Pelicula2","sinopsis",auxgen5,55);
-    Pelicula p3("Pelicula3","sinopsis",auxgen4,119);
-    Serie s("Serie1","sinopsis de serie",auxgen2);
-    Serie s2("Serie2","sinopsis de serie",auxgen);
-    Documental d("Documental1","sinopsis de documental",auxgen4);
-    Documental d2("Documental2","sinopsis de documental",auxgen);
-    Documental d3("Documental3","sinopsis de documental",auxgen5);
     
+    
+    std::shared_ptr<Contenido> elem (new Pelicula("Pelicula1","sinopsis",auxgen,60));
+    gestor.addContenido(elem);
+    elem.reset(new Pelicula("Pelicula2","sinopsis",auxgen5,55));
+    gestor.addContenido(elem);
+    
+    elem.reset(new Serie ("Serie1","sinopsis de serie",auxgen2));
+    gestor.addContenido(elem);
+    elem.reset(new Serie ("Serie2","sinopsis de serie",auxgen4));
+    gestor.addContenido(elem);
 
-    Contenido * puntero = &p;
-    gestor.addContenido(puntero);
-    puntero = &s;
-    gestor.addContenido(puntero);
-    puntero = &d;
-    gestor.addContenido(puntero);
-    puntero = &p2;
-    gestor.addContenido(puntero);
-    puntero = &p3;
-    gestor.addContenido(puntero);
-    puntero = &s2;
-    gestor.addContenido(puntero);
-    puntero = &d2;
-    gestor.addContenido(puntero);
-    puntero = &d3;
-    gestor.addContenido(puntero);
-
+    
+    elem.reset(new Documental ("Documental1","sinopsis de documental",auxgen4));
+    gestor.addContenido(elem);
+    elem.reset(new Documental ("Documental2","sinopsis de documental",auxgen));
+    gestor.addContenido(elem);
+    elem.reset(new Documental ("Documental3","sinopsis de documental",auxgen5));
+    gestor.addContenido(elem);
+    
+   // gestor.
 
     gestor.removeContenido("Serie1");
+    gestor.addContenido("Serie1","pepe");
     std::cout << "--CONTENIDO--" << '\n';
     gestor.mostrar_contenido();
     std::cout << "----" << '\n';

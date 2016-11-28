@@ -15,6 +15,9 @@
 
 class Temporada{
 public:
+    Temporada(std::string nombre);
+    virtual ~Temporada();
+    
     std::string getNombre() const;
     std::map<std::string, std::vector<Episodio> > getEpisodios();
     
