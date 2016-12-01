@@ -28,16 +28,13 @@ int main(int argc, char** argv) {
     auxgen2.push_back("comedia");
     auxgen2.push_back("drama");
     std::vector<std::string> auxgen4;
-    auxgen4.push_back("accion");
+    auxgen4.push_back("drama");
     auxgen4.push_back("comedia");
-    auxgen4.push_back("aventura");
+    auxgen4.push_back("accion");
     std::vector<std::string> auxgen5;
     auxgen5.push_back("miedo");
-    
-     //std::make_shared
-     //std::unique_ptr
+
     Gestor gestor;
-    
     
     std::shared_ptr<Contenido> elem (new Pelicula("Pelicula1","sinopsis",auxgen,60));
     gestor.addContenido(elem);
@@ -49,7 +46,6 @@ int main(int argc, char** argv) {
     elem.reset(new Serie ("Serie2","sinopsis de serie",auxgen4));
     gestor.addContenido(elem);
 
-    
     elem.reset(new Documental ("Documental1","sinopsis de documental",auxgen4));
     gestor.addContenido(elem);
     elem.reset(new Documental ("Documental2","sinopsis de documental",auxgen));
@@ -57,10 +53,16 @@ int main(int argc, char** argv) {
     elem.reset(new Documental ("Documental3","sinopsis de documental",auxgen5));
     gestor.addContenido(elem);
     
-   // gestor.
-
-    gestor.removeContenido("Serie1");
+    
+    elem.reset(new Serie ("Serie1","sinopsis de serie",auxgen2));
+    gestor.addContenido(elem);
+    //gestor.removeContenido("Serie2");
     gestor.addContenido("Serie1","pepe");
+    gestor.addContenido("Serie1","pepe","cap1",10);
+    //gestor.removeContenido("Serie1","pepe");
+    gestor.addContenido("Documental1","pepe",5);
+    //gestor.removeContenido("Documental1","pepe");
+    gestor.buscarGeneros(auxgen4);
     std::cout << "--CONTENIDO--" << '\n';
     gestor.mostrar_contenido();
     std::cout << "----" << '\n';

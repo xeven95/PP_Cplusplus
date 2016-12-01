@@ -11,6 +11,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <memory>
 
 class Contenido{
 public:
@@ -23,6 +24,12 @@ public:
     std::vector<std::string> getGenero() const;
     virtual std::string getTipo() ;
     virtual void getInfo();
+    
+    virtual void addEpisodio(std::string ntemp, std::string nepi, int dur);
+    virtual void addTemporada(std::string ntemp);
+    
+    virtual void removeTemporada(std::string ntemp);
+    virtual void removeEpisodio(std::string nombre,std::string nepi);
     
 private:
     std::string titulo, sinopsis;

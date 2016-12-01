@@ -11,6 +11,21 @@ std::string Temporada::getNombre() const{
     return nombre;
 }
 
-std::map<std::string, std::vector<Episodio> > Temporada::getEpisodios(){
+std::map<std::string, std::shared_ptr<Episodio> > Temporada::getEpisodios(){
     return episodios;
+}
+
+void Temporada::addEpisodio (std::string nepi, int dur){
+    if (episodios.count(nepi)==0){
+        episodios[nepi].reset(new Episodio (nepi,dur));
+    } else {
+        std::cout << "Ya existe el episodio " << nepi << '\n';
+    }
+}
+void Temporada::removeEpisodio(std::string nepi){
+    if (episodios.count(nepi)==1){
+        episodios.erase(nepi);
+    } else {
+        std::cout << "No existe el episodio " << nepi << '\n';
+    }
 }

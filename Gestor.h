@@ -14,6 +14,9 @@
 #include <map>
 #include <string>
 #include <memory>
+#include <iostream>
+#include <algorithm>
+
 
 class Gestor{
 public:
@@ -21,16 +24,22 @@ public:
     virtual ~Gestor();
     
     void addContenido(std::shared_ptr<Contenido> cont); //Add contenido principal
-    void addContenido(std::string nserie, std::string ntemp);
-    void addContenido(std::string nserie, std::string ntemp, Episodio& episodio);
-    void addContenido(std::string nserie, Episodio& episodio);
+    void addContenido(std::string nserie, std::string ntemp); //Añadir temporada a serie
+    void addContenido(std::string nserie, std::string ntemp, std::string nepi , unsigned int dur); //Añadir episodio a temporada de una serie
+    void addContenido(std::string ndocu, std::string nepi,unsigned int dur);//Añadir un episodio a un documental
     
     void removeContenido(std::string nombre);
+    void removeContenido(std::string nombre, std::string elemento);
+    void removeContenido(std::string nserie, std::string ntemp, std::string nepi);
+    
     bool exist_contenido(std::string nombre);
     std::shared_ptr<Contenido> encontrar_contenido(std::string nombre);
-    std::vector<std::shared_ptr<Contenido>>::iterator encontrar_contenido(std::vector<std::shared_ptr<Contenido>> vector, std::shared_ptr<Contenido> cont); //AÑADIR & A CONTENIDO PARA NO TRATAR COPIAS
+    std::shared_ptr<Contenido> encontrar_contenido_pelicula(std::string nombre);
+    std::shared_ptr<Contenido> encontrar_contenido_serie(std::string nombre);
+    std::shared_ptr<Contenido> encontrar_contenido_documental(std::string nombre);
 
-    
+    void buscarGeneros (std::vector<std::string> genero);
+    std::vector<std::shared_ptr<Contenido>> buscarGenerosMetodo(std::vector<std::shared_ptr<Contenido>>& cont1,std::vector<std::shared_ptr<Contenido>>& cont2);
     
     //Metodos secundarios para opciones extra
     void mostrar_contenido();

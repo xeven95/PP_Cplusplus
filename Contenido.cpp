@@ -30,3 +30,18 @@ std::string Contenido::getTipo(){
 void Contenido::getInfo(){
     std::cout << "----" << '\n';
 }
+
+void Contenido::addTemporada(std::string ntemp){
+    std::cout << "----" << '\n';
+}
+
+void Contenido::addEpisodio(std::string ntemp, std::string nepi, int dur){
+    std::cout << "----" << '\n';
+}
+
+void Contenido::removeTemporada(std::string ntemp){
+    std::cout << "----" << '\n';
+}
+void Contenido::removeEpisodio(std::string nombre,std::string nepi){
+    std::cout << "----" << '\n';
+}

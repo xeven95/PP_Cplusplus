@@ -18,12 +18,15 @@ public:
     Documental(std::string tit,std::string sin, std::vector<std::string> gen);
     virtual ~Documental();
 
-    std::map<std::string,std::vector<Episodio> > getEpisodios() const;
+    std::map<std::string,std::shared_ptr<Episodio> > getEpisodios() const;
     virtual std::string getTipo();
     virtual void getInfo();
+    virtual void addEpisodio(std::string ntemp, std::string nepi, int dur);
+    virtual void removeTemporada(std::string ntemp);
+
     
 private:
-    std::map<std::string,std::vector<Episodio> > episodios;
+    std::map<std::string,std::shared_ptr<Episodio> > episodios;
     
 };
 

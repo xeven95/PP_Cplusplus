@@ -19,14 +19,19 @@ public:
     Serie(std::string tit,std::string sin, std::vector<std::string> gen);
     virtual ~Serie();
     
-    std::map<std::string,std::vector<Temporada> > getTemporadas() const;
+    std::map<std::string,std::shared_ptr<Temporada> > getTemporadas() const;
+    virtual void addTemporada(std::string ntemp);
+    virtual void addEpisodio(std::string ntemp, std::string nepi, int dur);
     int getNumCapitulos() ;
     void addNumCapitulos();
     virtual std::string getTipo();
     virtual void getInfo();
     
+    virtual void removeTemporada(std::string ntemp);
+    virtual void removeEpisodio(std::string nombre,std::string nepi);
+    
 private:
-    std::map<std::string,std::vector<Temporada> > temporadas;
+    std::map<std::string,std::shared_ptr<Temporada> > temporadas;
     int numcapitulos;
 
 };

@@ -11,7 +11,10 @@
 #include "Episodio.h"
 #include <vector>
 #include <map>
+#include <memory>
 #include <string>
+#include <iostream>
+
 
 class Temporada{
 public:
@@ -19,11 +22,13 @@ public:
     virtual ~Temporada();
     
     std::string getNombre() const;
-    std::map<std::string, std::vector<Episodio> > getEpisodios();
+    std::map<std::string, std::shared_ptr<Episodio> > getEpisodios();
+    void addEpisodio (std::string nepi, int dur);
+    void removeEpisodio (std::string nepi);
     
 private:
     std::string nombre;
-    std::map<std::string, std::vector<Episodio> > episodios;
+    std::map<std::string, std::shared_ptr<Episodio> > episodios;
     
 };
 
