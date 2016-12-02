@@ -62,3 +62,15 @@ int Serie::getNumCapitulos() {
     return numcapitulos;
 }
 
+std::shared_ptr<Episodio> Serie::buscarEpisodio (unsigned int n1,unsigned int n2){
+    std::shared_ptr<Episodio> epi;
+    std::shared_ptr<Temporada> temp;
+    std::map<std::string, std::shared_ptr<Temporada> >::iterator it = temporadas.begin();
+    if (n1<=temporadas.size()){
+        std::advance(it,n1-1);
+        epi = temporadas[it->first]->buscarEpisodio(n2);
+    } else {
+       std::cout << "No hay tantas temporadas" << '\n'; 
+    }
+    return epi;
+}

@@ -24,6 +24,7 @@ public:
     virtual void addEpisodio(std::string ntemp, std::string nepi, int dur);
     virtual void removeTemporada(std::string ntemp);
 
+    virtual std::shared_ptr<Episodio> buscarEpisodio (unsigned int n1,unsigned int n2);
     
 private:
     std::map<std::string,std::shared_ptr<Episodio> > episodios;

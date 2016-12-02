@@ -41,8 +41,13 @@ public:
     void buscarGeneros (std::vector<std::string> genero);
     std::vector<std::shared_ptr<Contenido>> buscarGenerosMetodo(std::vector<std::shared_ptr<Contenido>>& cont1,std::vector<std::shared_ptr<Contenido>>& cont2);
     
+    void buscarContenidoporNumero (std::string nombre, unsigned int n1,unsigned int n2 = 0);
+    std::shared_ptr<Episodio> buscarEpisodioSerie (std::string nserie, unsigned int temp, unsigned int epi);
+    std::shared_ptr<Episodio> buscarEpisodioDocu (std::string ndocu, unsigned int epi);
+    
     //Metodos secundarios para opciones extra
     void mostrar_contenido();
+    void mostrar_contenido(std::vector<std::shared_ptr<Contenido>> cont);
     int sizeContenido();
     void mostrarInfoGenero();
     

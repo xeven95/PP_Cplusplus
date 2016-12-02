@@ -38,3 +38,14 @@ void Documental::removeTemporada(std::string ntemp){
         std::cout << "No ha sido encontra el documental "<< ntemp << '\n';
     }
 }
+std::shared_ptr<Episodio> Documental::buscarEpisodio(unsigned int n1, unsigned int n2){
+    std::shared_ptr<Episodio> cont;
+    std::map<std::string, std::shared_ptr<Episodio> >::iterator it = episodios.begin();
+    if (n1 <= episodios.size()){
+        std::advance(it,n1-1);
+        cont = episodios[it->first];
+    } else {
+        std::cout << "No hay tantos capitulos" << '\n';
+    }
+    return cont;
+}

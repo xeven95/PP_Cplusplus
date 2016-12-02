@@ -29,15 +29,6 @@ void Gestor::addContenido(std::string nserie, std::string ntemp){
         std::cout << "La serie llamada " << nserie << " no ha sido encontrada." << '\n';        
     }
 }
-//Añade un episodio a una un documental
-void Gestor::addContenido(std::string ndocu, std::string nepi, unsigned int dur){
-    std::shared_ptr<Contenido> cont = this->encontrar_contenido_documental(ndocu);
-    if (cont){
-        cont->addEpisodio("",nepi,dur);
-    } else {
-        std::cout << "El documental llamada " << ndocu << " no ha sido encontrada." << '\n';  
-    }
-}
 //Añade episodios a la temporadas de la serie
 void Gestor::addContenido(std::string nserie, std::string ntemp, std::string nepi, unsigned int dur){
     std::shared_ptr<Contenido> cont = this->encontrar_contenido_serie(nserie);
@@ -47,6 +38,15 @@ void Gestor::addContenido(std::string nserie, std::string ntemp, std::string nep
 
     } else {
         std::cout << "La serie llamada " << nserie << " no ha sido encontrada." << '\n';        
+    }
+}
+//Añade un episodio a una un documental
+void Gestor::addContenido(std::string ndocu, std::string nepi, unsigned int dur){
+    std::shared_ptr<Contenido> cont = this->encontrar_contenido_documental(ndocu);
+    if (cont){
+        cont->addEpisodio("",nepi,dur);
+    } else {
+        std::cout << "El documental llamada " << ndocu << " no ha sido encontrada." << '\n';  
     }
 }
 
@@ -127,11 +127,11 @@ void Gestor::buscarGeneros(std::vector<std::string> genero){
         std::vector<std::string>::iterator it=genero.begin();
         for( std::advance(it,2); it!=genero.end(); it++){
             aux=this->buscarGenerosMetodo(aux,generos[*it]);
+            std::cout << "aux: "<< aux.size() << '\n';
         }
     } 
-    std::vector<std::shared_ptr<Contenido>> cont;
-    std::set_intersection(generos["comedia"].begin(),generos["comedia"].end(),generos["drama"].begin(),generos["drama"].end(),std::back_inserter(cont));
-    std::cout << "numero: " << aux.size() << '\n';
+    this->mostrar_contenido(aux);
+    
 }
 std::vector<std::shared_ptr<Contenido>> Gestor::buscarGenerosMetodo(std::vector<std::shared_ptr<Contenido> >& cont1, std::vector<std::shared_ptr<Contenido> >& cont2){
     std::vector<std::shared_ptr<Contenido>> alm;
@@ -157,7 +157,7 @@ std::shared_ptr<Contenido> Gestor::encontrar_contenido(std::string nombre){
     cont->getInfo();      
     return cont;
 }
-std::shared_ptr<Contenido> Gestor::encontrar_contenido_pelicula(std::string nombre){
+std::shared_ptr<Contenido> Gestor::encontrar_contenido_pelicula(std::string nombre) {
     std::vector<std::shared_ptr<Contenido>>::iterator it;
     std::shared_ptr<Contenido> cont;
     it = std::find_if (contenido["pelicula"].begin(), contenido["pelicula"].end(), [nombre](std::shared_ptr<Contenido> n){
@@ -193,6 +193,25 @@ std::shared_ptr<Contenido> Gestor::encontrar_contenido_documental(std::string no
     return cont;
 }
 
+void Gestor::buscarContenidoporNumero(std::string nombre, unsigned int n1, unsigned int n2){
+    std::shared_ptr<Contenido> cont;
+    std::shared_ptr<Episodio> epi;
+    if (n2 == 0){
+        cont = this->encontrar_contenido_documental(nombre);
+    } else {
+        cont = this->encontrar_contenido_serie(nombre);
+    }
+    if (cont){
+        epi = cont->buscarEpisodio(n1,n2);
+        if (epi){
+            std::cout << "Episodio - Nombre: " << epi->getNombre() << " Duracion: " << epi->getDuracion() << '\n';
+        }
+    } else {
+        std::cout << "No existe el contenido llamado "<< nombre << '\n';
+    }
+    
+}
+
 //Si existe un contenido principal ya con dicho nombre
 bool Gestor::exist_contenido(std::string nombre){
     std::map<std::string, std::vector<std::shared_ptr<Contenido>> >::iterator it;
@@ -218,6 +237,14 @@ void Gestor::mostrar_contenido(){
             cont = *it2;
             cont->getInfo();
         }
+    }
+}
+void Gestor::mostrar_contenido(std::vector<std::shared_ptr<Contenido> > cont){
+    std::vector<std::shared_ptr<Contenido> >::iterator it;
+    std::shared_ptr<Contenido> elem;
+    for(it=cont.begin(); it!=cont.end();it++){
+        elem=*it;
+        elem->getInfo();
     }
 }
 int Gestor::sizeContenido(){

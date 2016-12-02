@@ -30,6 +30,8 @@ public:
     virtual void removeTemporada(std::string ntemp);
     virtual void removeEpisodio(std::string nombre,std::string nepi);
     
+    virtual std::shared_ptr<Episodio> buscarEpisodio (unsigned int n1,unsigned int n2);
+    
 private:
     std::map<std::string,std::shared_ptr<Temporada> > temporadas;
     int numcapitulos;

@@ -63,6 +63,9 @@ int main(int argc, char** argv) {
     gestor.addContenido("Documental1","pepe",5);
     //gestor.removeContenido("Documental1","pepe");
     gestor.buscarGeneros(auxgen4);
+    gestor.buscarContenidoporNumero("Serie1",1,1);
+    gestor.buscarContenidoporNumero("Documental1",1);
+    
     std::cout << "--CONTENIDO--" << '\n';
     gestor.mostrar_contenido();
     std::cout << "----" << '\n';

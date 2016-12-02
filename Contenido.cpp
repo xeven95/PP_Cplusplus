@@ -45,3 +45,6 @@ void Contenido::removeTemporada(std::string ntemp){
 void Contenido::removeEpisodio(std::string nombre,std::string nepi){
     std::cout << "----" << '\n';
 }
+std::shared_ptr<Episodio> Contenido::buscarEpisodio(unsigned int n1, unsigned int n2){
+    std::cout << "----" << '\n';
+}
