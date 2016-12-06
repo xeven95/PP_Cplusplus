@@ -48,3 +48,20 @@ void Contenido::removeEpisodio(std::string nombre,std::string nepi){
 std::shared_ptr<Episodio> Contenido::buscarEpisodio(unsigned int n1, unsigned int n2){
     std::cout << "----" << '\n';
 }
+std::ostream& operator<< (std::ostream& stream, const std::shared_ptr<Contenido>& cont){
+    stream << cont->getInfoString();
+    return stream;
+}
+std::string Contenido::getInfoString(){
+    std::cout << "----" << '\n';
+    std::string aux = "-cont-" + '\n';
+    return aux;
+}
+std::string Contenido::getGeneroString(){
+    std::vector<std::string>::iterator it;
+    std::string aux="";
+    for(it=genero.begin();it!=genero.end();it++){
+        aux = aux + *it + " ";
+    }
+    return aux;
+}

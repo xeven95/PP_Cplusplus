@@ -40,3 +40,11 @@ std::shared_ptr<Episodio> Temporada::buscarEpisodio (unsigned int n1){
     }
     return epi;
 }
+std::string Temporada::getInfoString(){
+    std::string aux="";
+    std::map<std::string, std::shared_ptr<Episodio> >::iterator it;
+    for(it=episodios.begin();it!=episodios.end();it++){
+        aux = aux + it->first + " ";
+    }
+    return aux;
+}

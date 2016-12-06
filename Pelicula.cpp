@@ -22,3 +22,7 @@ void Pelicula::getInfo(){
     std::cout << "Pelicula - " << this->getTitulo();
     std::cout << " Duración: " << this->getDuracion() << '\n';
 }
+std::string Pelicula::getInfoString(){
+    std::string aux= this->getTitulo() + " Duración: " + to_string(this->getDuracion()) + " Genero: " + this->getGeneroString() + '\n';
+    return aux;
+}

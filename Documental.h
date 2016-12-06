@@ -12,6 +12,7 @@
 #include "Episodio.h"
 #include <vector>
 #include <map>
+#include <string>
 
 class Documental: public Contenido{
 public:    
@@ -21,10 +22,12 @@ public:
     std::map<std::string,std::shared_ptr<Episodio> > getEpisodios() const;
     virtual std::string getTipo();
     virtual void getInfo();
+    virtual std::string getInfoString();
     virtual void addEpisodio(std::string ntemp, std::string nepi, int dur);
     virtual void removeTemporada(std::string ntemp);
 
     virtual std::shared_ptr<Episodio> buscarEpisodio (unsigned int n1,unsigned int n2);
+    friend std::ostream& operator<< (std::ostream& stream, const std::shared_ptr<Contenido> cont);
     
 private:
     std::map<std::string,std::shared_ptr<Episodio> > episodios;

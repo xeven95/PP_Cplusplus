@@ -20,6 +20,9 @@ public:
     unsigned int getDuracion() const;
     virtual std::string getTipo();
     virtual void getInfo();
+    virtual std::string getInfoString();
+    
+    friend std::ostream& operator<< (std::ostream& stream, const std::shared_ptr<Contenido> cont);
     
 private:
     unsigned int duracion;

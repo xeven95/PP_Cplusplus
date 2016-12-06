@@ -20,15 +20,24 @@ std::string Serie::getTipo(){
 void Serie::getInfo(){
     std::cout << "Serie - " << this->getTitulo();
     std::cout << " Temporadas: " << this->getTemporadas().size();
-    std::cout << " Episodios: " << this->getNumCapitulos() << '\n';
+    std::cout << '\n';
             
 }
-
+std::string Serie::getInfoString(){
+    std::map<std::string, std::shared_ptr<Temporada> >::iterator it;
+    int cont=1;
+    std::string aux= this->getTitulo() + " Genero: "+ this->getGeneroString() + " Temporadas: " + to_string(temporadas.size()) + '\n';
+    for(it=temporadas.begin(); it!=temporadas.end();it++){
+        aux= aux + "    Temporada "+to_string(cont) + ":" + it->first + ", Episodios: " + temporadas[it->first]->getInfoString() + '\n';
+        cont++;
+    }
+    
+    return aux;
+}
 void Serie::addTemporada(std::string ntemp){
     if (temporadas.count(ntemp)==0){ //No existe esta temporada
         temporadas[ntemp].reset(new Temporada(ntemp));
-                std::cout << temporadas.count(ntemp)  << '\n';        
-
+        std::cout << "Ha sido añadida la temporada " << ntemp << '\n';
     } else { //Existe esta temporada
         std::cout << "Ya existe la temporada " << ntemp << '\n';
     }

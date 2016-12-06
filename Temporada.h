@@ -26,6 +26,8 @@ public:
     void addEpisodio (std::string nepi, int dur);
     void removeEpisodio (std::string nepi);
     
+    std::string getInfoString();
+    
     std::shared_ptr<Episodio> buscarEpisodio (unsigned int n1);
     
 private:

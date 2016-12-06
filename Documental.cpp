@@ -1,5 +1,6 @@
 #include "Documental.h"
 
+
 Documental::Documental(std::string tit, std::string sin, std::vector<std::string> gen)
 :Contenido(tit,sin,gen){
     
@@ -21,11 +22,20 @@ void Documental::getInfo(){
     std::cout << "Documental - " << this->getTitulo();
     std::cout << " Episodios: " << this->episodios.size() << '\n';
 }
-
+std::string Documental::getInfoString(){
+    std::map<std::string, std::shared_ptr<Episodio> >::iterator it;
+    std::string aux= this->getTitulo() + " Generos: " + this->getGeneroString() + " Episodios: " + to_string(this->episodios.size()) + '\n';
+    aux = aux + "    Episodios: ";
+    for(it=episodios.begin();it!=episodios.end();it++){
+        aux = aux + it->first + "";
+    }
+    aux = aux + '\n';
+    return aux;
+}
 void Documental::addEpisodio(std::string ntemp, std::string nepi, int dur){
     if (episodios.count(nepi)==0){
         episodios[nepi].reset(new Episodio(nepi,dur));
-        std::cout << "Ha sido añadido "<< nepi << '\n';
+        std::cout << "Ha sido añadido el episodio llamado "<< nepi << '\n';
     } else {
         std::cout << "Ya existe un episodio llamado "<< nepi << '\n';
     }

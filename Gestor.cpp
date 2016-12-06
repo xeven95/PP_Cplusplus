@@ -127,7 +127,6 @@ void Gestor::buscarGeneros(std::vector<std::string> genero){
         std::vector<std::string>::iterator it=genero.begin();
         for( std::advance(it,2); it!=genero.end(); it++){
             aux=this->buscarGenerosMetodo(aux,generos[*it]);
-            std::cout << "aux: "<< aux.size() << '\n';
         }
     } 
     this->mostrar_contenido(aux);
@@ -154,7 +153,7 @@ std::shared_ptr<Contenido> Gestor::encontrar_contenido(std::string nombre){
             cont = *it2;
         }
     }
-    cont->getInfo();      
+    //cont->getInfo();      
     return cont;
 }
 std::shared_ptr<Contenido> Gestor::encontrar_contenido_pelicula(std::string nombre) {
@@ -192,7 +191,14 @@ std::shared_ptr<Contenido> Gestor::encontrar_contenido_documental(std::string no
     }
     return cont;
 }
-
+void Gestor::buscarContenidoNombre(std::string nombre){
+    std::shared_ptr<Contenido> cont = this->encontrar_contenido(nombre);
+    if (cont){
+        std::cout << cont;
+    } else {
+        std::cout << "No se ha encontrado ningun contenido llamado " + nombre +'\n';
+    }
+}
 void Gestor::buscarContenidoporNumero(std::string nombre, unsigned int n1, unsigned int n2){
     std::shared_ptr<Contenido> cont;
     std::shared_ptr<Episodio> epi;
@@ -227,6 +233,31 @@ bool Gestor::exist_contenido(std::string nombre){
     return encontrado;
 }
 
+void Gestor::guardarfichero(){
+    std::vector<std::shared_ptr<Contenido>>::iterator it;
+    std::ofstream fichero;
+    fichero.open("Backup.txt");
+    if(contenido.count("pelicula")==1){
+        fichero << "---Peliculas---" << '\n';
+        for(it=contenido["pelicula"].begin();it!=contenido["pelicula"].end();it++){
+            fichero << *it;
+        } 
+    }
+    if(contenido.count("serie")==1){
+        fichero << "---Series---" << '\n';
+        for(it=contenido["serie"].begin();it!=contenido["serie"].end();it++){
+            fichero << *it;
+        }
+    }
+    if(contenido.count("documental")==1){
+        fichero << "---Documentales---" << '\n';
+        for (it=contenido["documental"].begin();it!=contenido["documental"].end();it++){
+            fichero << *it;
+        }
+    }
+    fichero.close();
+}
+
 //Metodos para mostrar informacion
 void Gestor::mostrar_contenido(){
     std::map<std::string, std::vector<std::shared_ptr<Contenido> > >::iterator it;
@@ -235,7 +266,8 @@ void Gestor::mostrar_contenido(){
     for(it=contenido.begin(); it!=contenido.end();it++){
         for(it2=contenido[it->first].begin(); it2!=contenido[it->first].end();it2++){
             cont = *it2;
-            cont->getInfo();
+            std::cout << cont;
+            //cont->getInfo();
         }
     }
 }
@@ -244,7 +276,8 @@ void Gestor::mostrar_contenido(std::vector<std::shared_ptr<Contenido> > cont){
     std::shared_ptr<Contenido> elem;
     for(it=cont.begin(); it!=cont.end();it++){
         elem=*it;
-        elem->getInfo();
+        std::cout << elem;
+        //elem->getInfo();
     }
 }
 int Gestor::sizeContenido(){

@@ -40,6 +40,7 @@ int main(int argc, char** argv) {
     gestor.addContenido(elem);
     elem.reset(new Pelicula("Pelicula2","sinopsis",auxgen5,55));
     gestor.addContenido(elem);
+
     
     elem.reset(new Serie ("Serie1","sinopsis de serie",auxgen2));
     gestor.addContenido(elem);
@@ -50,29 +51,34 @@ int main(int argc, char** argv) {
     gestor.addContenido(elem);
     elem.reset(new Documental ("Documental2","sinopsis de documental",auxgen));
     gestor.addContenido(elem);
-    elem.reset(new Documental ("Documental3","sinopsis de documental",auxgen5));
+    elem.reset(new Documental ("Documental3","sinopsis de documental",auxgen5   ));
     gestor.addContenido(elem);
     
     
-    elem.reset(new Serie ("Serie1","sinopsis de serie",auxgen2));
-    gestor.addContenido(elem);
+    //elem.reset(new Serie ("Serie1","sinopsis de serie",auxgen2));
+    //gestor.addContenido(elem);
+    
     //gestor.removeContenido("Serie2");
     gestor.addContenido("Serie1","pepe");
     gestor.addContenido("Serie1","pepe","cap1",10);
     //gestor.removeContenido("Serie1","pepe");
     gestor.addContenido("Documental1","pepe",5);
     //gestor.removeContenido("Documental1","pepe");
-    gestor.buscarGeneros(auxgen4);
-    gestor.buscarContenidoporNumero("Serie1",1,1);
-    gestor.buscarContenidoporNumero("Documental1",1);
+    
     
     std::cout << "--CONTENIDO--" << '\n';
     gestor.mostrar_contenido();
-    std::cout << "----" << '\n';
     std::cout << "--GENEROS--" << '\n';    
-    gestor.mostrarInfoGenero();
-    std::cout << "----" << '\n';
-    
+    gestor.mostrarInfoGenero();;
+    std::cout << "--CONSULTAS--" << '\n';
+    std::cout << "- Consulta de Contenido por nombre:" << '\n';
+    gestor.buscarContenidoNombre("Serie1");
+    std::cout << "- Consulta de Contenido por genero:" << '\n';
+    gestor.buscarGeneros(auxgen4);
+    std::cout << "- Consultas de Episodio de una serie y documental:" << '\n';
+    gestor.buscarContenidoporNumero("Serie1",1,1);
+    gestor.buscarContenidoporNumero("Documental1",1);
+    gestor.guardarfichero();
     return 0;
     /*
     do{
