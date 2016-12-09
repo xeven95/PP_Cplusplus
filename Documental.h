@@ -10,9 +10,7 @@
 
 #include "Contenido.h"
 #include "Episodio.h"
-#include <vector>
 #include <map>
-#include <string>
 
 class Documental: public Contenido{
 public:    

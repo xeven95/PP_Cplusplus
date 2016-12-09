@@ -9,7 +9,6 @@
 #define	PELICULA_H
 
 #include "Contenido.h"
-#include <string>
 
 class Pelicula: public Contenido {
 public:

@@ -9,7 +9,6 @@
 #define	GESTOR_H
 
 #include "Contenido.h"
-#include "Episodio.h"
 #include <vector>
 #include <map>
 #include <string>
@@ -25,12 +24,13 @@ public:
     virtual ~Gestor();
     
     void addContenido(std::shared_ptr<Contenido> cont); //Add contenido principal
-    void addContenido(std::string nserie, std::string ntemp); //Añadir temporada a serie
-    void addContenido(std::string nserie, std::string ntemp, std::string nepi , unsigned int dur); //Añadir episodio a temporada de una serie
+    void addContenido(std::string nserie, unsigned int ntemp); //Añadir temporada a serie
+    void addContenido(std::string nserie, unsigned int ntemp, std::string nepi , unsigned int dur); //Añadir episodio a temporada de una serie
     void addContenido(std::string ndocu, std::string nepi,unsigned int dur);//Añadir un episodio a un documental
     
     void removeContenido(std::string nombre);
     void removeContenido(std::string nombre, std::string elemento);
+    void removeContenido(std::string nserie, unsigned int ntemp);
     void removeContenido(std::string nserie, std::string ntemp, std::string nepi);
     
     //Consultar contenido por nombre

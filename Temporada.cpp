@@ -4,7 +4,7 @@ Temporada::Temporada(std::string nombre): nombre(nombre){
 }
 
 Temporada::~Temporada(){
-    
+    episodios.clear();
 }
 
 std::string Temporada::getNombre() const{
@@ -42,9 +42,14 @@ std::shared_ptr<Episodio> Temporada::buscarEpisodio (unsigned int n1){
 }
 std::string Temporada::getInfoString(){
     std::string aux="";
+    if(episodios.size()==0){
+        aux = aux + "Episodios proximamente...";
+    } else {
+        aux = aux + "Episodios: ";
+    }
     std::map<std::string, std::shared_ptr<Episodio> >::iterator it;
     for(it=episodios.begin();it!=episodios.end();it++){
-        aux = aux + it->first + " ";
+        aux = aux + episodios[it->first]->getInfoString() + " ";
     }
     return aux;
 }

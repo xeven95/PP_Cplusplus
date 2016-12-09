@@ -21,19 +21,19 @@ void Gestor::addContenido(std::shared_ptr<Contenido> cont){
     }
 }
 //Añade temporadas a las series
-void Gestor::addContenido(std::string nserie, std::string ntemp){
+void Gestor::addContenido(std::string nserie, unsigned int ntemp){
     std::shared_ptr<Contenido> cont = this->encontrar_contenido_serie(nserie);
     if(cont){
-        cont->addTemporada(ntemp);
+        cont->addTemporada(to_string(ntemp));
     } else {
         std::cout << "La serie llamada " << nserie << " no ha sido encontrada." << '\n';        
     }
 }
 //Añade episodios a la temporadas de la serie
-void Gestor::addContenido(std::string nserie, std::string ntemp, std::string nepi, unsigned int dur){
+void Gestor::addContenido(std::string nserie, unsigned int ntemp, std::string nepi, unsigned int dur){
     std::shared_ptr<Contenido> cont = this->encontrar_contenido_serie(nserie);
     if(cont){
-        cont->addEpisodio(ntemp,nepi,dur);
+        cont->addEpisodio(to_string(ntemp),nepi,dur);
         //llamar metodo que meta una temporada
 
     } else {
@@ -73,18 +73,23 @@ void Gestor::removeContenido(std::string nombre){
         std::cout << "El contenido llamado " << nombre << " no ha sido encontrado." << '\n';
     }
 }
-//Eliminar una temporada de una serie o un episodio de Documental
+//Eliminar un episodio de Documental
 void Gestor::removeContenido(std::string nombre, std::string elemento){
-    std::shared_ptr<Contenido> cont = this->encontrar_contenido_serie(nombre);
+    std::shared_ptr<Contenido> cont = this->encontrar_contenido_documental(nombre);
     if (cont){
         cont->removeTemporada(elemento);
     } else {
-        cont = this->encontrar_contenido_documental(nombre);
-        if (cont){
-            cont->removeTemporada(elemento);
-        } else {
-            std::cout << "No se ha podido eliminar el contenido llamado " << nombre << " porque no ha sido encontrado." << '\n';
-        }    
+        std::cout << "No se ha podido eliminar el contenido porque no se ha encontrado " << nombre << "." << '\n'; 
+    }
+}
+
+//Eliminar una temporada de una serie
+void Gestor::removeContenido(std::string nserie, unsigned int ntemp){
+    std::shared_ptr<Contenido> cont = this->encontrar_contenido_serie(nserie);
+     if (cont){
+        cont->removeTemporada(to_string(ntemp));
+    } else {
+        std::cout << "No se ha podido eliminar el contenido porque no se ha encontrado " << nserie << "." << '\n'; 
     }
 }
 //Eliminar un capitulo de una temporada de una serie
@@ -276,7 +281,7 @@ void Gestor::mostrar_contenido(std::vector<std::shared_ptr<Contenido> > cont){
     std::shared_ptr<Contenido> elem;
     for(it=cont.begin(); it!=cont.end();it++){
         elem=*it;
-        std::cout << elem;
+        elem->getInfo();
         //elem->getInfo();
     }
 }

@@ -10,8 +10,7 @@
 
 #include "Contenido.h"
 #include "Temporada.h"
-#include <string>
-#include <vector>
+
 #include <map>
 
 class Serie: public Contenido{

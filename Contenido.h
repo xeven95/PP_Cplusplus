@@ -9,18 +9,11 @@
 #define	CONTENIDO_H
 
 #include <string>
-#include <sstream>
 #include <vector>
 #include <iostream>
 #include <memory>
 #include "Episodio.h"
-template <typename T>
-std::string to_string(T value)
-{
-	std::ostringstream os ;
-	os << value ;
-	return os.str() ;
-}
+#include "tostring.h"
 
 class Contenido{
 public:
@@ -36,6 +29,7 @@ public:
     virtual std::string getInfoString();
     std::string getGeneroString();
     
+protected:
     virtual void addEpisodio(std::string ntemp, std::string nepi, int dur);
     virtual void addTemporada(std::string ntemp);
     
@@ -44,6 +38,11 @@ public:
     
     virtual std::shared_ptr<Episodio> buscarEpisodio (unsigned int n1,unsigned int n2);
     friend std::ostream& operator<< (std::ostream& stream, const std::shared_ptr<Contenido>& cont);
+    
+    friend class Gestor;
+    friend class Pelicula;
+    friend class Documental;
+    friend class Serie;
     
 private:
     std::string titulo, sinopsis;

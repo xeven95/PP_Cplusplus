@@ -20,9 +20,10 @@ std::string Pelicula::getTipo(){
 
 void Pelicula::getInfo(){
     std::cout << "Pelicula - " << this->getTitulo();
-    std::cout << " Duración: " << this->getDuracion() << '\n';
+    std::cout << " Duración: " << this->getDuracion() << " Genero: " << this->getGeneroString() << '\n';
 }
 std::string Pelicula::getInfoString(){
     std::string aux= this->getTitulo() + " Duración: " + to_string(this->getDuracion()) + " Genero: " + this->getGeneroString() + '\n';
+    aux= aux + "    Sinopsis: " + this->getSinopsis() + '\n';
     return aux;
 }

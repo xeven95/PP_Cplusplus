@@ -7,7 +7,7 @@ Documental::Documental(std::string tit, std::string sin, std::vector<std::string
 }
 
 Documental::~Documental(){
-    
+    episodios.clear();
 }
 
 std::map<std::string,std::shared_ptr<Episodio> > Documental::getEpisodios() const{
@@ -19,15 +19,20 @@ std::string Documental::getTipo(){
 }
 
 void Documental::getInfo(){
-    std::cout << "Documental - " << this->getTitulo();
-    std::cout << " Episodios: " << this->episodios.size() << '\n';
+    std::cout << "Documental - " << this->getTitulo() << " Episodios: " << to_string(this->episodios.size()) << " Generos: " << this->getGeneroString() << '\n';
 }
 std::string Documental::getInfoString(){
     std::map<std::string, std::shared_ptr<Episodio> >::iterator it;
     std::string aux= this->getTitulo() + " Generos: " + this->getGeneroString() + " Episodios: " + to_string(this->episodios.size()) + '\n';
-    aux = aux + "    Episodios: ";
+    aux= aux + "    Sinopsis: " + this->getSinopsis() + '\n';
+    if(episodios.size()==0){
+        aux = aux + "    Episodios proximamente...";
+    } else {
+        aux = aux + "    Episodios: ";
+    }
+    
     for(it=episodios.begin();it!=episodios.end();it++){
-        aux = aux + it->first + "";
+        aux = aux + episodios[it->first]->getInfoString() + " ";
     }
     aux = aux + '\n';
     return aux;
@@ -45,7 +50,7 @@ void Documental::removeTemporada(std::string ntemp){
         episodios.erase(ntemp);
         std::cout << "Ha sido eliminado "<< ntemp << '\n';
     } else {
-        std::cout << "No ha sido encontra el documental "<< ntemp << '\n';
+        std::cout << "No ha sido encontra el capitulo "<< ntemp << " de " << this->getTitulo() <<'\n';
     }
 }
 std::shared_ptr<Episodio> Documental::buscarEpisodio(unsigned int n1, unsigned int n2){

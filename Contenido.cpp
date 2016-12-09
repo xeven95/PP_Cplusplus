@@ -9,6 +9,7 @@ titulo(tit),sinopsis(sin),genero(gen) {
 }
 
 Contenido::~Contenido(){
+    genero.clear();
 }
 
 std::string Contenido::getTitulo() const{

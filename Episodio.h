@@ -9,6 +9,7 @@
 #define	EPISODIO_H
 
 #include <string>
+#include "tostring.h"
 
 class Episodio {
 public:
@@ -17,7 +18,7 @@ public:
     
     std::string getNombre() const;
     unsigned int getDuracion() const;
-    
+    std::string getInfoString();
 private:
     std::string nombre;
     unsigned int duracion;
